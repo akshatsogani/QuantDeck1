@@ -1,0 +1,78 @@
+🎯 Build a complete front-end web application in Replit that connects to the Python-based strategies and models found in the files attached.
+
+The goal is to wrap these quantitative trading models and strategies into a user-friendly, interactive dashboard with the following features:
+
+---
+
+✅ BACKEND (Python - FastAPI):
+1. Clone and adapt models/strategies from the repo:
+   - `StrategyTesting`, `TimeSeries`, `Indicators`, `DataLoader`
+   - Ensure modular structure (e.g., /strategies, /models, /data)
+
+2. Replace or upgrade deprecated or unmaintained libraries:
+   - Replace `pandas_datareader` with `yfinance`
+   - Replace old plotting libraries with `plotly` or `matplotlib` with `plotly.express` for better web integration
+   - Remove any non-functioning broker integrations or outdated endpoints
+
+3. Expose key strategy operations as FastAPI endpoints:
+   - `/strategies/list` → Get available strategies
+   - `/strategies/run` → Run selected strategy on user data
+   - `/models/train` → Train model (e.g., ARIMA, LSTM)
+   - `/backtest/run` → Run custom backtest
+   - `/metrics/export` → Export results as CSV/JSON
+
+4. Allow input for:
+   - Custom tickers (via `yfinance`)
+   - Date ranges
+   - Strategy parameters (sliders/dropdowns)
+   - Indicators and filters
+
+5. Enable **multi-strategy comparison** mode: run multiple strategies on the same ticker and compare PnL, Sharpe, Drawdown.
+
+---
+
+✅ FRONTEND (React.js or HTML + JavaScript):
+1. Build a clean, responsive UI using **Tailwind CSS** or Bootstrap with:
+   - **Drag-and-drop interface** to select:
+     - Tickers
+     - Strategies
+     - Models (ARIMA, LSTM, XGBoost, etc.)
+     - Backtesting configs
+   - **Strategy Settings Panel**: Show sliders/inputs based on selected strategy
+   - **Feature Selection Panel**: Let user choose technical indicators, fundamentals, or custom features
+
+2. Visualizations:
+   - Equity curve and candlestick chart with strategy entries/exits
+   - Performance dashboard (Sharpe, CAGR, Max Drawdown, Win Rate)
+   - Backtest table with trade logs and KPIs
+   - Model prediction vs actual chart for TimeSeries models
+
+3. Export and Comparison:
+   - Compare multiple strategies side-by-side
+   - Export metrics and predictions as pdf
+   - Save configuration to localStorage or backend
+
+---
+
+✅ FUNCTIONALITY REQUIREMENTS:
+- App must be fully executable on in house memory without database need.
+- Replace heavy/slow models with lighter ones if needed
+- Use job queues (async / threading) to avoid blocking UI during training or backtest
+- Modular file structure (models, routes, services)
+- Enable dynamic updates — user doesn’t need to refresh after backtest
+
+---
+
+✅ BRANDING:
+- Title: **"QuantDeck by Akshat Sogani"**
+- Footer must say:  
+  “© Akshat Sogani | [LinkedIn](https://www.linkedin.com/in/akshat-sogani/)”
+- Minimal dark theme with clean grid layout
+
+---
+
+✅ EXTRA FEATURES (Optional):
+- Basic portfolio tracking simulation (multi-asset backtest)
+- load preset configurations
+
+

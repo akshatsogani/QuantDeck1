@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+  
+  /* Custom QuantDeck colors */
+  --success: hsl(142, 76%, 36%);
+  --success-foreground: hsl(0, 0%, 98%);
+  --warning: hsl(35, 91%, 62%);
+  --warning-foreground: hsl(0, 0%, 98%);
+  --danger: hsl(0, 84%, 60%);
+  --danger-foreground: hsl(0, 0%, 98%);
+  --slate-50: hsl(210, 40%, 98%);
+  --slate-200: hsl(214, 32%, 91%);
+  --slate-300: hsl(213, 27%, 84%);
+  --slate-400: hsl(215, 20%, 65%);
+  --slate-500: hsl(215, 16%, 47%);
+  --slate-600: hsl(215, 19%, 35%);
+  --slate-700: hsl(215, 25%, 27%);
+  --slate-800: hsl(217, 33%, 17%);
+  --slate-900: hsl(222, 84%, 5%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Custom button styles */
+  .btn-primary {
+    @apply bg-primary hover:bg-blue-600 text-primary-foreground px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary hover:bg-slate-700 text-secondary-foreground px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center;
+  }
+  
+  .btn-preset {
+    @apply bg-secondary hover:bg-slate-700 text-secondary-foreground px-3 py-1 rounded font-medium transition-colors text-sm;
+  }
+  
+  .btn-preset.active {
+    @apply bg-primary text-primary-foreground;
+  }
+  
+  .btn-category {
+    @apply bg-secondary hover:bg-slate-700 text-secondary-foreground px-3 py-1 rounded font-medium transition-colors text-xs;
+  }
+  
+  .btn-category.active {
+    @apply bg-yellow-600 text-white;
+  }
+  
+  .btn-chart-type {
+    @apply bg-secondary hover:bg-slate-700 text-secondary-foreground px-3 py-1 rounded font-medium transition-colors text-xs;
+  }
+  
+  .btn-chart-type.active {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-card rounded-xl border border-border shadow-lg;
+  }
+  
+  .card-header {
+    @apply p-6 border-b border-border flex items-center justify-between;
+  }
+  
+  .card-title {
+    @apply text-lg font-semibold text-card-foreground flex items-center;
+  }
+  
+  .card-content {
+    @apply p-6;
+  }
+
+  /* Input styles */
+  .input-field {
+    @apply w-full bg-input border border-border text-foreground px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors;
+  }
+  
+  .input-label {
+    @apply block text-sm font-medium text-muted-foreground mb-2;
+  }
+
+  /* Strategy cards */
+  .strategy-card {
+    @apply bg-secondary hover:bg-slate-700 border border-border hover:border-blue-500 rounded-lg p-3 cursor-grab transition-all duration-200;
+  }
+  
+  .selected-strategy-card {
+    @apply bg-secondary border border-primary rounded-lg p-3 mb-2;
+  }
+  
+  .strategy-dropzone {
+    @apply bg-slate-800 border-2 border-dashed border-slate-600 rounded-lg p-4 text-center text-slate-400 min-h-[100px] flex items-center justify-center;
+  }
+
+  /* Metric cards */
+  .metric-card {
+    @apply bg-secondary rounded-lg p-4 text-center;
+  }
+  
+  .metric-value {
+    @apply text-xl font-bold;
+  }
+  
+  .metric-label {
+    @apply text-xs text-muted-foreground mt-1;
+  }
+
+  /* Table styles */
+  .trade-table {
+    @apply w-full text-sm;
+  }
+  
+  .trade-table th {
+    @apply text-left text-muted-foreground font-medium py-2 px-3 border-b border-border;
+  }
+  
+  .trade-table td {
+    @apply py-2 px-3 border-b border-border;
+  }
+
+  /* Badge styles */
+  .badge-success {
+    @apply bg-green-600 text-white px-2 py-1 rounded text-xs font-medium;
+  }
+  
+  .badge-danger {
+    @apply bg-red-600 text-white px-2 py-1 rounded text-xs font-medium;
+  }
+
+  /* Progress steps */
+  .progress-step {
+    @apply flex items-center space-x-2;
+  }
+  
+  .progress-step.active {
+    @apply text-primary;
+  }
+  
+  .progress-step.active .step-number {
+    @apply bg-primary text-primary-foreground;
+  }
+  
+  .step-number {
+    @apply w-8 h-8 bg-muted rounded-full flex items-center justify-center text-white text-sm font-semibold;
+  }
+
+  /* Tooltip styles */
+  .tooltip {
+    @apply relative;
+  }
+  
+  .tooltip-text {
+    @apply invisible absolute z-10 w-48 p-2 bg-popover text-popover-foreground text-xs rounded-lg shadow-lg -top-10 left-1/2 transform -translate-x-1/2 border border-border;
+  }
+  
+  .tooltip:hover .tooltip-text {
+    @apply visible;
+  }
+
+  /* Success/Error colors */
+  .text-success {
+    @apply text-green-600;
+  }
+  
+  .text-danger {
+    @apply text-red-600;
+  }
+  
+  .text-warning {
+    @apply text-yellow-600;
+  }
+}
