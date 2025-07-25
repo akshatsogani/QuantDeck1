@@ -6,6 +6,9 @@ scipy==1.11.4          # ✅ Fully compatible with Python 3.10 and TensorFlow
 # Financial Data APIs
 yfinance>=0.2.65
 
+# Technical Analysis
+ta>=0.10.2
+
 # Machine Learning & Modeling
 scikit-learn==1.3.2
 tensorflow==2.15.0     # ✅ Works only on Python ≤3.10
