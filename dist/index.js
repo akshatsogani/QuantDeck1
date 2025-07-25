@@ -494,16 +494,28 @@ import { createServer as createViteServer, createLogger } from "vite";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path2 from "path";
-import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
-var vite_config_default = defineConfig({
+async function loadReplitPlugins() {
+  const plugins = [];
+  if (process.env.NODE_ENV !== "production" && process.env.REPL_ID !== void 0) {
+    try {
+      const runtimeErrorOverlay = await import("@replit/vite-plugin-runtime-error-modal");
+      plugins.push(runtimeErrorOverlay.default());
+    } catch (e) {
+      console.warn("Failed to load @replit/vite-plugin-runtime-error-modal:", e.message);
+    }
+    try {
+      const cartographer = await import("@replit/vite-plugin-cartographer");
+      plugins.push(cartographer.cartographer());
+    } catch (e) {
+      console.warn("Failed to load @replit/vite-plugin-cartographer:", e.message);
+    }
+  }
+  return plugins;
+}
+var vite_config_default = defineConfig(async () => ({
   plugins: [
     react(),
-    runtimeErrorOverlay(),
-    ...process.env.NODE_ENV !== "production" && process.env.REPL_ID !== void 0 ? [
-      await import("@replit/vite-plugin-cartographer").then(
-        (m) => m.cartographer()
-      )
-    ] : []
+    ...await loadReplitPlugins()
   ],
   resolve: {
     alias: {
@@ -523,7 +535,7 @@ var vite_config_default = defineConfig({
       deny: ["**/.*"]
     }
   }
-});
+}));
 
 // server/vite.ts
 import { nanoid } from "nanoid";
